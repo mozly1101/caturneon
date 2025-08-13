@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chess Neon — Game</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#0f1a2b;
+      --grid:#12233b;
+      --neon:#00f0e0;
+      --neon2:#02c9b9;
+      --muted:#9adfe7;
+      --shadow: 0 10px 30px rgba(0,0,0,.45);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background: radial-gradient(1200px 600px at 20% -20%, rgba(0, 255, 230, .09), transparent 60%), radial-gradient(1400px 800px at 120% 20%, rgba(0, 200, 255, .06), transparent 50%), var(--bg); color:#dff6f2; font-family: 'Orbitron', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;}
+    .wrap{max-width:960px;margin:24px auto;padding:20px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#1a74a6,#2bd4c3);display:flex;align-items:center;justify-content:center;color:#002e2b;font-weight:900;box-shadow: 0 6px 24px rgba(2,210,190,0.22)}
+    h1{font-size:22px;margin:0;color:var(--neon);letter-spacing:.8px}
+    .panel{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); border:1px solid rgba(0,240,224,0.12); border-radius:20px; padding:16px; box-shadow: var(--shadow)}
+    .board-wrap{display:flex;flex-direction:column;gap:14px}
+    .board{width:min(92vw, 560px); aspect-ratio:1; display:grid; grid-template-columns: repeat(8, 1fr); border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,.08); box-shadow: var(--shadow);}
+    .sq{display:flex;align-items:center;justify-content:center; font-size: clamp(22px, 8vw, 42px); user-select:none; cursor:pointer; transition: transform .06s ease}
+    .sq:nth-child(odd){background:#0f2236}
+    .sq:nth-child(even){background:#132a44}
+    .sq.dark{background:#0f2236}
+    .sq.light{background:#132a44}
+    .sq.highlight{outline:3px solid rgba(0,240,224,.8); outline-offset:-3px; box-shadow:0 0 0 2px rgba(0,240,224,.25) inset}
+    .sq.move{background-image: radial-gradient(rgba(0,240,224,.85), rgba(0,240,224,0) 60%); background-size: 18% 18%; background-repeat:no-repeat; background-position:center}
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:100px; border:0; font-weight:800; background:linear-gradient(90deg, var(--neon), var(--neon2)); color:#002e2b; cursor:pointer; box-shadow:0 10px 26px rgba(0,240,224,.2)}
+    .btn:active{transform:scale(.98)}
+    .status{color:var(--muted); font-size:14px}
+    footer{margin-top:18px; text-align:center; color:rgba(0,240,224,.6); font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">♞</div>
+        <div>
+          <h1>Chess Neon</h1>
+          <div class="status" id="status">Giliran: Putih</div>
+        </div>
+      </div>
+      <div class="toolbar">
+        <button class="btn" id="resetBtn">Reset</button>
+        <button class="btn" id="botBtn">Main vs Bot (Hitam)</button>
+      </div>
+    </header>
+
+    <div class="panel board-wrap">
+      <div id="board" class="board" aria-label="Papan Catur"></div>
+    </div>
+
+    <footer>© <span id="year"></span> Chess Neon — by You</footer>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
